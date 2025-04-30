@@ -1,0 +1,69 @@
+/* Navigation */
+header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #d4af37;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 40px;
+}
+
+nav ul li a {
+  color: #fff !important;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  position: relative;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #d4af37;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.5rem;
+}
