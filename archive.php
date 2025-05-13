@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Prestige_Chauffeur
+ * @package afribeads
  */
 
 get_header();

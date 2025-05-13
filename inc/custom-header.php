@@ -8,39 +8,39 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Prestige_Chauffeur
+ * @package Afribeads
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses prestige_chauffeur_header_style()
+ * @uses afribeads_header_style()
  */
-function prestige_chauffeur_custom_header_setup() {
+function afribeads_custom_header_setup() {
 	add_theme_support(
 		'custom-header',
 		apply_filters(
-			'prestige_chauffeur_custom_header_args',
+			'afribeads_custom_header_args',
 			array(
 				'default-image'      => '',
 				'default-text-color' => '000000',
 				'width'              => 1000,
 				'height'             => 250,
 				'flex-height'        => true,
-				'wp-head-callback'   => 'prestige_chauffeur_header_style',
+				'wp-head-callback'   => 'afribeads_header_style',
 			)
 		)
 	);
 }
-add_action( 'after_setup_theme', 'prestige_chauffeur_custom_header_setup' );
+add_action( 'after_setup_theme', 'afribeads_custom_header_setup' );
 
-if ( ! function_exists( 'prestige_chauffeur_header_style' ) ) :
+if ( ! function_exists( 'afribeads_header_style' ) ) :
 	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
-	 * @see prestige_chauffeur_custom_header_setup().
+	 * @see afribeads_custom_header_setup().
 	 */
-	function prestige_chauffeur_header_style() {
+	function afribeads_header_style() {
 		$header_text_color = get_header_textcolor();
 
 		/*

@@ -1,6 +1,6 @@
-# Prestige Chauffeur WordPress Theme
+# Afri Beads WordPress Theme
 
-![Prestige Chauffeur Theme Preview](screenshot.png)
+![Afri Beads Theme Preview](screenshot.png)
 
 ## Overview
 

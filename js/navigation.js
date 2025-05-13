@@ -4,96 +4,166 @@
  * Handles toggling the navigation menu for small screens and enables TAB key
  * navigation support for dropdown menus.
  */
-( function() {
-	const siteNavigation = document.getElementById( 'site-navigation' );
+(function ($) {
+  // Variables
+  var $body = $("body"),
+    $menuToggle = $(".menu-toggle"),
+    $siteNavigation = $(".main-navigation"),
+    $mobileNavigation = $(".mobile-navigation"),
+    $dropdownToggle = $(".dropdown-toggle"),
+    $window = $(window);
 
-	// Return early if the navigation doesn't exist.
-	if ( ! siteNavigation ) {
-		return;
-	}
+  // Initialize the navigation system
+  function initNavigation() {
+    // Mobile Menu Toggle Button
+    if (!$menuToggle.length) {
+      $siteNavigation.prepend(
+        '<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="menu-label">Menu</span></button>'
+      );
+      $menuToggle = $(".menu-toggle");
+    }
 
-	const button = siteNavigation.getElementsByTagName( 'button' )[ 0 ];
+    // Setup event handlers
+    setupEventHandlers();
 
-	// Return early if the button doesn't exist.
-	if ( 'undefined' === typeof button ) {
-		return;
-	}
+    // Initial setup for dropdown menus
+    $siteNavigation.find("li.menu-item-has-children > a").attr("aria-haspopup", "true");
 
-	const menu = siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
+    // Handle resize events
+    handleResize();
 
-	// Hide menu toggle button if menu is empty and return early.
-	if ( 'undefined' === typeof menu ) {
-		button.style.display = 'none';
-		return;
-	}
+    // Make navigation accessible via keyboard
+    makeAccessible();
+  }
 
-	if ( ! menu.classList.contains( 'nav-menu' ) ) {
-		menu.classList.add( 'nav-menu' );
-	}
+  // Setup all event handlers
+  function setupEventHandlers() {
+    // Menu toggle button click
+    $body.on("click", ".menu-toggle", function (e) {
+      e.preventDefault();
+      toggleMobileMenu();
+    });
 
-	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
-	button.addEventListener( 'click', function() {
-		siteNavigation.classList.toggle( 'toggled' );
+    // Dropdown toggle click (mobile)
+    $body.on("click", ".dropdown-toggle", function (e) {
+      e.preventDefault();
+      toggleDropdown($(this));
+    });
 
-		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
-			button.setAttribute( 'aria-expanded', 'false' );
-		} else {
-			button.setAttribute( 'aria-expanded', 'true' );
-		}
-	} );
+    // Handle clicks on menu items with children on desktop
+    $siteNavigation.find(".menu-item-has-children > a").on("click", function (e) {
+      var $this = $(this);
 
-	// Remove the .toggled class and set aria-expanded to false when the user clicks outside the navigation.
-	document.addEventListener( 'click', function( event ) {
-		const isClickInside = siteNavigation.contains( event.target );
+      if ($window.width() > 768) {
+        // Only if we're on desktop and the submenu isn't open
+        if (!$this.parent().hasClass("submenu-open")) {
+          e.preventDefault();
+          $this.parent().siblings(".submenu-open").removeClass("submenu-open").find(".sub-menu").slideUp(200);
 
-		if ( ! isClickInside ) {
-			siteNavigation.classList.remove( 'toggled' );
-			button.setAttribute( 'aria-expanded', 'false' );
-		}
-	} );
+          $this.parent().addClass("submenu-open").find("> .sub-menu").slideDown(200);
+        }
+      }
+    });
 
-	// Get all the link elements within the menu.
-	const links = menu.getElementsByTagName( 'a' );
+    // Close submenus when clicking outside
+    $(document).on("click", function (e) {
+      if (!$(e.target).closest(".main-navigation").length) {
+        $(".submenu-open").removeClass("submenu-open").find(".sub-menu").slideUp(200);
+      }
+    });
 
-	// Get all the link elements with children within the menu.
-	const linksWithChildren = menu.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
+    // Close mobile menu when clicking outside
+    $(document).on("click", function (e) {
+      if (
+        $mobileNavigation.hasClass("toggled") &&
+        !$(e.target).closest(".mobile-navigation").length &&
+        !$(e.target).closest(".menu-toggle").length
+      ) {
+        toggleMobileMenu();
+      }
+    });
 
-	// Toggle focus each time a menu link is focused or blurred.
-	for ( const link of links ) {
-		link.addEventListener( 'focus', toggleFocus, true );
-		link.addEventListener( 'blur', toggleFocus, true );
-	}
+    // Handle hover events for desktop
+    $siteNavigation.find(".menu-item-has-children").hover(
+      function () {
+        if ($window.width() > 768) {
+          $(this).addClass("hover");
+          $(this).children(".sub-menu").stop(true, false).slideDown(200);
+        }
+      },
+      function () {
+        if ($window.width() > 768) {
+          $(this).removeClass("hover");
+          $(this).children(".sub-menu").stop(true, false).slideUp(200);
+        }
+      }
+    );
+  }
 
-	// Toggle focus each time a menu link with children receive a touch event.
-	for ( const link of linksWithChildren ) {
-		link.addEventListener( 'touchstart', toggleFocus, false );
-	}
+  // Toggle the mobile menu
+  function toggleMobileMenu() {
+    $menuToggle.toggleClass("toggled");
+    $mobileNavigation.toggleClass("toggled");
 
-	/**
-	 * Sets or removes .focus class on an element.
-	 */
-	function toggleFocus() {
-		if ( event.type === 'focus' || event.type === 'blur' ) {
-			let self = this;
-			// Move up through the ancestors of the current link until we hit .nav-menu.
-			while ( ! self.classList.contains( 'nav-menu' ) ) {
-				// On li elements toggle the class .focus.
-				if ( 'li' === self.tagName.toLowerCase() ) {
-					self.classList.toggle( 'focus' );
-				}
-				self = self.parentNode;
-			}
-		}
+    if ($menuToggle.hasClass("toggled")) {
+      $menuToggle.attr("aria-expanded", "true");
+      $body.addClass("mobile-menu-open");
+    } else {
+      $menuToggle.attr("aria-expanded", "false");
+      $body.removeClass("mobile-menu-open");
 
-		if ( event.type === 'touchstart' ) {
-			const menuItem = this.parentNode;
-			event.preventDefault();
-			for ( const link of menuItem.parentNode.children ) {
-				if ( menuItem !== link ) {
-					link.classList.remove( 'focus' );
-				}
-			}
-			menuItem.classList.toggle( 'focus' );
-		}
-	}
-}() );
+      // Reset all expanded dropdowns
+      $mobileNavigation.find(".dropdown-toggle").attr("aria-expanded", "false").parent().find(".sub-menu").hide();
+    }
+  }
+
+  // Toggle a dropdown menu
+  function toggleDropdown($button) {
+    var $parent = $button.parent(),
+      $subMenu = $parent.find("> .sub-menu"),
+      expanded = $button.attr("aria-expanded") === "true";
+
+    // Close other dropdowns at the same level
+    $parent.siblings(".dropdown").find("> .dropdown-toggle").attr("aria-expanded", "false");
+    $parent.siblings(".dropdown").find("> .sub-menu").slideUp(200);
+
+    // Toggle current dropdown
+    $button.attr("aria-expanded", !expanded);
+
+    if (!expanded) {
+      $subMenu.slideDown(200);
+    } else {
+      $subMenu.slideUp(200);
+    }
+  }
+
+  // Handle window resize events
+  function handleResize() {
+    $window.on("resize", function () {
+      if ($window.width() > 768) {
+        // If we're on desktop, close the mobile menu if it's open
+        if ($mobileNavigation.hasClass("toggled")) {
+          toggleMobileMenu();
+        }
+
+        // Reset any mobile-specific states
+        $siteNavigation.find(".sub-menu").removeAttr("style");
+      } else {
+        // If we're on mobile, reset any desktop-specific states
+        $siteNavigation.find(".hover").removeClass("hover");
+      }
+    });
+  }
+
+  // Make navigation accessible via keyboard
+  function makeAccessible() {
+    $siteNavigation.find("a").on("focus blur", function () {
+      $(this).parents("li.menu-item-has-children").toggleClass("focus");
+    });
+  }
+
+  // Initialize when the document is ready
+  $(document).ready(function () {
+    initNavigation();
+  });
+})(jQuery);

@@ -1,3 +1,3 @@
 import "./navigation.js";
-import "./prestige.js";
+import "./afribeads.js";
 import "./customizer.js";

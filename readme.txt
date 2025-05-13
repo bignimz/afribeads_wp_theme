@@ -1,4 +1,4 @@
-=== BAT Bistro ===
+=== Afri Beads ===
 
 Contributors: automattic
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -10,7 +10,7 @@ Stable tag: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
-A starter theme called BAT Bistro.
+A starter theme called Afri Beads.
 
 == Description ==
 
@@ -26,7 +26,7 @@ Professional and responsive theme for restaurant businesses
 
 = Does this theme support any plugins? =
 
-BAT Bistro includes support for WooCommerce and for Infinite Scroll in Jetpack.
+Afri Beads includes support for WooCommerce and for Infinite Scroll in Jetpack.
 
 == Changelog ==
 

@@ -2,7 +2,7 @@
 /**
  * BAT Bistro Theme Customizer
  *
- * @package Prestige_Chauffeur
+ * @package afribeads
  */
 
 /**
@@ -10,7 +10,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function prestige_chauffeur_customize_register( $wp_customize ) {
+function afribeads_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -20,26 +20,26 @@ function prestige_chauffeur_customize_register( $wp_customize ) {
 			'blogname',
 			array(
 				'selector'        => '.site-title a',
-				'render_callback' => 'prestige_chauffeur_customize_partial_blogname',
+				'render_callback' => 'afribeads_customize_partial_blogname',
 			)
 		);
 		$wp_customize->selective_refresh->add_partial(
 			'blogdescription',
 			array(
 				'selector'        => '.site-description',
-				'render_callback' => 'prestige_chauffeur_customize_partial_blogdescription',
+				'render_callback' => 'afribeads_customize_partial_blogdescription',
 			)
 		);
 	}
 }
-add_action( 'customize_register', 'prestige_chauffeur_customize_register' );
+add_action( 'customize_register', 'afribeads_customize_register' );
 
 /**
  * Render the site title for the selective refresh partial.
  *
  * @return void
  */
-function prestige_chauffeur_customize_partial_blogname() {
+function afribeads_customize_partial_blogname() {
 	bloginfo( 'name' );
 }
 
@@ -48,14 +48,14 @@ function prestige_chauffeur_customize_partial_blogname() {
  *
  * @return void
  */
-function prestige_chauffeur_customize_partial_blogdescription() {
+function afribeads_customize_partial_blogdescription() {
 	bloginfo( 'description' );
 }
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function prestige_chauffeur_customize_preview_js() {
-	wp_enqueue_script( 'prestige_chauffeur-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
+function afribeads_customize_preview_js() {
+	wp_enqueue_script( 'afribeads-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
 }
-add_action( 'customize_preview_init', 'prestige_chauffeur_customize_preview_js' );
+add_action( 'customize_preview_init', 'afribeads_customize_preview_js' );

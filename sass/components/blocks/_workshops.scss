@@ -1,0 +1,79 @@
+/* Workshops Section */
+.workshops {
+  padding: 5rem 0;
+  background-color: var(--light-bg);
+}
+
+.workshops-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.workshops-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.workshops-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.workshop-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.workshop-image {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+}
+
+.workshop-info {
+  padding: 1.5rem;
+}
+
+.workshops a:visited {
+  color: #fff;
+}
+
+.workshop-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.workshop-details {
+  margin-bottom: 1.5rem;
+}
+
+.detail-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.detail-label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .workshops-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+}

@@ -1,0 +1,46 @@
+/* Process Section */
+.process-section {
+  background-color: var(--light-bg);
+  margin-bottom: 100px;
+  padding: 2rem 0;
+}
+
+.process-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.process-header {
+  margin-bottom: 5rem;
+}
+
+.process-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+.process-step:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.step-img {
+  flex: 1;
+}
+
+.step-content {
+  flex: 1;
+  text-align: left;
+}
+
+.step-content h3 {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.step-number {
+  font-weight: 700;
+  color: var(--primary-color);
+}

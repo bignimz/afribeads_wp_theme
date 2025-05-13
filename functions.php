@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Afri_Beads
+ * @package afribeads
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
@@ -19,14 +19,14 @@ if ( ! defined( '_S_VERSION' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function afri_beads_setup() {
+function afribeads_setup() {
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
 		* If you're building a theme based on BAT Bistro, use a find and replace
-		* to change 'afri_beads' to the name of your theme in all the template files.
+		* to change 'afribeads' to the name of your theme in all the template files.
 		*/
-	load_theme_textdomain( 'afri_beads', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'afribeads', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -49,7 +49,7 @@ function afri_beads_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'afri_beads' ),
+			'menu-1' => esc_html__( 'Primary', 'afribeads' ),
 		)
 	);
 
@@ -74,7 +74,7 @@ function afri_beads_setup() {
 	add_theme_support(
 		'custom-background',
 		apply_filters(
-			'afri_beads_custom_background_args',
+			'afribeads_custom_background_args',
 			array(
 				'default-color' => 'ffffff',
 				'default-image' => '',
@@ -100,7 +100,7 @@ function afri_beads_setup() {
 		)
 	);
 }
-add_action( 'after_setup_theme', 'afri_beads_setup' );
+add_action( 'after_setup_theme', 'afribeads_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -109,22 +109,22 @@ add_action( 'after_setup_theme', 'afri_beads_setup' );
  *
  * @global int $content_width
  */
-function afri_beads_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'afri_beads_content_width', 640 );
+function afribeads_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'afribeads_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'afri_beads_content_width', 0 );
+add_action( 'after_setup_theme', 'afribeads_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function afri_beads_widgets_init() {
+function afribeads_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'afri_beads' ),
+			'name'          => esc_html__( 'Sidebar', 'afribeads' ),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'afri_beads' ),
+			'description'   => esc_html__( 'Add widgets here.', 'afribeads' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -132,7 +132,7 @@ function afri_beads_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'afri_beads_widgets_init' );
+add_action( 'widgets_init', 'afribeads_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
@@ -140,13 +140,14 @@ add_action( 'widgets_init', 'afri_beads_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function afri_beads_scripts() {
+function afribeads_scripts() {
 	// OwlCarousel (CSS + JS)
 	wp_enqueue_style('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css', [], '2.3.4');
 	wp_enqueue_style('owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css', [], '2.3.4');
 	wp_enqueue_script('owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js', ['jquery'], '2.3.4', true);
 
 	wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&display=swap');
+	wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
 	wp_enqueue_style( 'afri-beads-style', get_template_directory_uri() . '/dist/assets/css/style.css', array(), _S_VERSION );
 	wp_enqueue_script('jquery');
@@ -156,8 +157,13 @@ function afri_beads_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_localize_script('afri-navigation', 'afriScreenReaderText', array(
+        'expand' => __('Expand child menu', 'afribeads'),
+        'collapse' => __('Collapse child menu', 'afribeads'),
+    ));
 }
-add_action( 'wp_enqueue_scripts', 'afri_beads_scripts' );
+add_action( 'wp_enqueue_scripts', 'afribeads_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -189,6 +195,16 @@ require get_template_directory() . '/inc/blocks_init.php';
  */
 require_once get_template_directory() . '/inc/class-tgm-plugin-activation.php';
 
+/**
+ * Include the custom navigation walker
+ */
+require_once get_template_directory() . '/inc/class-afri-custom-nav-walker.php';
+
+/**
+ * Include One click demo
+ */
+require_once get_template_directory() . '/inc/one-click-demo.php';
+
 
 /**
  * Load Jetpack compatibility file.
@@ -198,9 +214,10 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 
-add_action('tgmpa_register', 'afri_beads_register_required_plugins');
+add_action('tgmpa_register', 'afribeads_register_required_plugins');
 
-function afri_beads_register_required_plugins() {
+// Export required plugins
+function afribeads_register_required_plugins() {
     $plugins = [
         [
             'name'     => 'Advanced Custom Fields PRO',
@@ -210,17 +227,45 @@ function afri_beads_register_required_plugins() {
             'version'  => '6.2.1',
         ],
         [
-            'name'     => 'Contact Form 7',
-            'slug'     => 'contact-form-7',
-            'source'   => get_template_directory() . '/inc/plugins/contact-form-7', 
+            'name'     => 'WPForms',
+            'slug'     => 'wpforms-lite',
+            'source'   => get_template_directory() . '/inc/plugins/wpforms-lite.zip', 
             'required' => true,
-            'version'  => '6.2.1',
+            'version'  => '1.9.5.2',
+        ],
+        [
+            'name'     => 'WooCommerce',
+            'slug'     => 'woocommerce',
+            'source'   => get_template_directory() . '/inc/plugins/woocommerce.zip', 
+            'required' => true,
+            'version'  => '9.8.5',
+        ],
+        [
+            'name'     => 'Google for WooCommerce',
+            'slug'     => 'google-listings-and-ads',
+            'source'   => get_template_directory() . '/inc/plugins/google-listings-and-ads.zip', 
+            'required' => true,
+            'version'  => '2.9.13',
+        ],
+        [
+            'name'     => 'WooCommerce PayPal Payments',
+            'slug'     => 'woocommerce-paypal-payments',
+            'source'   => get_template_directory() . '/inc/plugins/woocommerce-paypal-payments.zip', 
+            'required' => true,
+            'version'  => '3.0.5',
+        ],
+        [
+            'name'     => 'One Click Demo Import',
+            'slug'     => 'one-click-demo-import',
+            'source'   => get_template_directory() . '/inc/plugins/one-click-demo-import.zip', 
+            'required' => true,
+            'version'  => '3.3.0',
         ],
         // Add other plugins here
     ];
 
     $config = [
-        'id'           => 'afri-beads-theme',
+        'id'           => 'afribeads-theme',
         'menu'         => 'install-required-plugins',
         'has_notices'  => true,
         'dismissable'  => true,
@@ -248,13 +293,3 @@ if (function_exists('acf_add_options_page')) {
         'redirect'    => false
     ]);
 }
-
-// Remove edit link in preview mode
-function remove_edit_link_in_preview($link) {
-    if (is_preview() || isset($_GET['preview'])) {
-        return '';
-    }
-    return $link;
-}
-add_filter('edit_post_link', 'remove_edit_link_in_preview');
-add_filter('get_edit_post_link', 'remove_edit_link_in_preview');

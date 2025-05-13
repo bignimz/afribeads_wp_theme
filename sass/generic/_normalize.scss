@@ -71,6 +71,10 @@ h6 {
   font-weight: 500;
 }
 
+a {
+  color: var(--text-color);
+}
+
 .afri-btn {
   width: 100%;
   padding: 8px 16px;
@@ -84,6 +88,7 @@ h6 {
   background-color: var(--primary-accent);
   color: #fff;
   border: none;
+  cursor: pointer;
 }
 
 .afri-btn-secondary {
@@ -93,18 +98,18 @@ h6 {
 }
 
 .afri-btn-outline {
-  background-color: transparent;
-  color: var(--primary-accent);
+  background-color: #fff;
+  color: var(--primary-accent) !important;
   border: 1px solid var(--primary-accent);
 }
 
 .afri-btn-outline:hover {
   background-color: var(--primary-accent);
-  color: #fff;
+  color: #fff !important;
 }
 
 .section-title {
-  font-size: 2.25rem;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 600;
   line-height: 2.5rem;
   color: var(--primary-color);
@@ -112,9 +117,9 @@ h6 {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 70%;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 1.25rem;
 }
 
 .learn-more {
@@ -129,4 +134,10 @@ h6 {
 .learn-more:hover {
   color: var(--primary-accent);
   text-decoration: underline;
+}
+
+@media screen and (min-width: 1161px) and (max-width: 1407px) {
+  .container {
+    max-width: 80%;
+  }
 }

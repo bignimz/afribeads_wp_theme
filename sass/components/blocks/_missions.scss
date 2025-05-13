@@ -1,0 +1,68 @@
+/* Mission Section */
+.missions {
+  margin-bottom: 50px;
+}
+
+.mission-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mission-pillars {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.pillar {
+  flex-basis: 30%;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pillar-number {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: var(--light-bg);
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pillar h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.pillar p {
+  font-size: 13px;
+}
+
+.centered-title {
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .pillar {
+    flex-basis: 48%;
+  }
+}
+
+@media (max-width: 768px) {
+  .pillar {
+    flex-basis: 100%;
+  }
+}

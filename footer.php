@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package prestige_Chauffeur
+ * @package afribeads
  */
 
 ?>
@@ -104,7 +104,7 @@
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
 
-		<a href="#" class="back-to-top">↑</a>
+		<!-- <a href="#" class="back-to-top">↑</a> -->
 	</div><!-- #page -->
 
 <?php wp_footer(); ?>

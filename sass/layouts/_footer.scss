@@ -2,24 +2,25 @@
 footer {
   padding: 4rem 0 2rem;
   position: relative;
+  background-color: var(--light-bg);
 }
 
-footer::before {
-  position: absolute;
-  content: "";
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 10px;
-  background-image: url("https://cbx-prod.b-cdn.net/COLOURBOX59160464.jpg?width=800&height=800&quality=70");
-  background-size: cover;
-  background-position: center;
-}
+// footer::before {
+//   position: absolute;
+//   content: "";
+//   top: 0px;
+//   left: 0px;
+//   width: 100%;
+//   height: 10px;
+//   background-image: url("https://cbx-prod.b-cdn.net/COLOURBOX59160464.jpg?width=800&height=800&quality=70");
+//   background-size: cover;
+//   background-position: center;
+// }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .footer-logo {
@@ -31,7 +32,8 @@ footer::before {
 
 .footer-about {
   color: var(--text-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: "Inter", sans-serif;
 }
 
 .social-links {
@@ -57,14 +59,16 @@ footer::before {
 }
 
 .footer-links h3 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: var(--primary-color);
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .footer-links ul {
   list-style: none;
   list-style: none;
+  font-family: "Inter", sans-serif;
 }
 
 .footer-links ul li {
@@ -94,8 +98,9 @@ footer::before {
 .copyright {
   margin-top: 3rem;
   text-align: center;
+  font-family: "Inter", sans-serif;
   color: var(--text-color);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .back-to-top {
@@ -117,4 +122,12 @@ footer::before {
 
 .back-to-top:hover {
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem;
+  }
 }

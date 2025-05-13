@@ -156,7 +156,7 @@ export const checkDemoFiles = (done) => {
 export const compress = () => {
   return gulp
     .src(paths.packaged.src)
-    .pipe(replace("prestige_chauffeur", info.name))
+    .pipe(replace("afribeads", info.name))
     .pipe(zip(`${info.name}.zip`))
     .pipe(gulp.dest(paths.packaged.dest));
 };

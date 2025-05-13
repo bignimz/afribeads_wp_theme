@@ -23,47 +23,55 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'afri_beads' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'afribeads' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="container">
-			<div class="site-header-container nav-container">
+		<div class="container nav-container">
 			<div class="site-branding">
 				<?php if(has_custom_logo()): ?>
 					<?php the_custom_logo(); ?>
 				<?php else: ?>
-					<h1 class="site-title">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-							<?php bloginfo( 'name' ); ?>
-						</a>
-					</h1>
-				<?php endif; ?>
-
-				<!-- Move mobile toggle outside of the conditional so it always appears -->
-				<button class="mobile-toggle">☰</button>
-
-				<?php 
-				$afri_beads_description = get_bloginfo( 'description', 'display' );
-				if ( $afri_beads_description || is_customize_preview() ) : ?>
-					<p class="site-description">
-						<?php echo esc_html( $afri_beads_description ); ?>
-					</p>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<div class="logo-mark"></div>
+						<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
+					</a>
 				<?php endif; ?>
 			</div><!-- .site-branding -->
-	
-		
-				<nav id="site-navigation" class="main-navigation">
-	
-					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( '☰', 'prestige_chauffeur' ); ?></button>
+
+			<!-- Desktop Navigation -->
+			<nav id="desktop-navigation" class="main-navigation">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+						'container'      => false,
+						'items_wrap'     => '<ul id="%1$s" class="menu nav-menu">%3$s</ul>',
+						'walker'         => new Afri_Custom_Nav_Walker(),
+					)
+				);
+				?>
+			</nav><!-- #desktop-navigation -->
+			
+			<!-- Mobile Navigation -->
+			<nav id="mobile-navigation" class="mobile-navigation">
+				<button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
+					<span class="menu-toggle-icon"><i class="fas fa-bars"></i></span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'afribeads' ); ?></span>
+				</button>
+				<div class="mobile-menu-container">
 					<?php
 					wp_nav_menu(
 						array(
 							'theme_location' => 'menu-1',
-							'menu_id'        => 'primary-menu',
+							'menu_id'        => 'mobile-menu',
+							'container'      => false,
+							'items_wrap'     => '<ul id="%1$s" class="menu nav-menu">%3$s</ul>',
+							'walker'         => new Afri_Custom_Nav_Walker(),
 						)
 					);
 					?>
-				</nav><!-- #site-navigation -->
-			</div>
+				</div>
+			</nav><!-- #mobile-navigation -->
 		</div>
 	</header><!-- #masthead -->

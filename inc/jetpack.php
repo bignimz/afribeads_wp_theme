@@ -4,7 +4,7 @@
  *
  * @link https://jetpack.com/
  *
- * @package Prestige_Chauffeur
+ * @package afribeads
  */
 
 /**
@@ -14,13 +14,13 @@
  * See: https://jetpack.com/support/responsive-videos/
  * See: https://jetpack.com/support/content-options/
  */
-function prestige_chauffeur_jetpack_setup() {
+function afribeads_jetpack_setup() {
 	// Add theme support for Infinite Scroll.
 	add_theme_support(
 		'infinite-scroll',
 		array(
 			'container' => 'main',
-			'render'    => 'prestige_chauffeur_infinite_scroll_render',
+			'render'    => 'afribeads_infinite_scroll_render',
 			'footer'    => 'page',
 		)
 	);
@@ -33,7 +33,7 @@ function prestige_chauffeur_jetpack_setup() {
 		'jetpack-content-options',
 		array(
 			'post-details' => array(
-				'stylesheet' => 'prestige_chauffeur-style',
+				'stylesheet' => 'afribeads-style',
 				'date'       => '.posted-on',
 				'categories' => '.cat-links',
 				'tags'       => '.tags-links',
@@ -48,13 +48,13 @@ function prestige_chauffeur_jetpack_setup() {
 		)
 	);
 }
-add_action( 'after_setup_theme', 'prestige_chauffeur_jetpack_setup' );
+add_action( 'after_setup_theme', 'afribeads_jetpack_setup' );
 
-if ( ! function_exists( 'prestige_chauffeur_infinite_scroll_render' ) ) :
+if ( ! function_exists( 'afribeads_infinite_scroll_render' ) ) :
 	/**
 	 * Custom render function for Infinite Scroll.
 	 */
-	function prestige_chauffeur_infinite_scroll_render() {
+	function afribeads_infinite_scroll_render() {
 		while ( have_posts() ) {
 			the_post();
 			if ( is_search() ) :

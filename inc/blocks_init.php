@@ -1,6 +1,6 @@
 <?php
 
-function prestige_chauffeur_acf_blocks_init() {
+function afribeads_acf_blocks_init() {
     if( function_exists('acf_register_block_type') ) {
         // Hero block
         acf_register_block_type([
@@ -11,7 +11,127 @@ function prestige_chauffeur_acf_blocks_init() {
             'category'          => 'layout',
             'icon'              => 'format-image',
             'keywords'          => ['hero', 'banner'],
-            'mode'              => 'edit'
+            'mode'              => 'preview'
+        ]);
+
+        // Content With Image block
+        acf_register_block_type([
+            'name'              => 'content_with_image',
+            'title'             => __('Content With Image Section'),
+            'description'       => __('Content with image section'),
+            'render_template'   => 'template-parts/blocks/content-with-image.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['content', 'image section'],
+            'mode'              => 'preview'
+        ]);
+
+        // Featured Products block
+        acf_register_block_type([
+            'name'              => 'featured_products',
+            'title'             => __('Featured Products Section'),
+            'description'       => __('Displays Featured products section'),
+            'render_template'   => 'template-parts/blocks/featured-products.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['products', 'featured'],
+            'mode'              => 'preview'
+        ]);
+
+        // CTA Banner block
+        acf_register_block_type([
+            'name'              => 'cta_banner',
+            'title'             => __('CTA Banner Section'),
+            'description'       => __('Displays a CTA with a background banner image'),
+            'render_template'   => 'template-parts/blocks/cta-banner.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['cta', 'banner'],
+            'mode'              => 'preview'
+        ]);
+
+        // Upcoming Workshops block
+        acf_register_block_type([
+            'name'              => 'upcoming_workshops',
+            'title'             => __('Upcoming Workshops Section'),
+            'description'       => __('Displays a list of upcoming workshops in a grid layout'),
+            'render_template'   => 'template-parts/blocks/upcoming-workshops.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['workshops', 'upcoming'],
+            'mode'              => 'preview'
+        ]);
+
+        // Testimonials block
+        acf_register_block_type([
+            'name'              => 'testimonials',
+            'title'             => __('Testimonials Section'),
+            'description'       => __('Displays a list of testimonials'),
+            'render_template'   => 'template-parts/blocks/testimonials.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['testimonials', 'reviews'],
+            'mode'              => 'preview'
+        ]);
+
+        // Missions block
+        acf_register_block_type([
+            'name'              => 'missions',
+            'title'             => __('Missions Section'),
+            'description'       => __('Displays mission title and its pillars'),
+            'render_template'   => 'template-parts/blocks/missions.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['missions'],
+            'mode'              => 'preview'
+        ]);
+
+        // Team block
+        acf_register_block_type([
+            'name'              => 'team',
+            'title'             => __('Team Members Section'),
+            'description'       => __('Displays team members'),
+            'render_template'   => 'template-parts/blocks/team.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['team', 'members'],
+            'mode'              => 'preview'
+        ]);
+
+        // Process block
+        acf_register_block_type([
+            'name'              => 'process',
+            'title'             => __('Process Section'),
+            'description'       => __('Displays images with content in a stack'),
+            'render_template'   => 'template-parts/blocks/process.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['process'],
+            'mode'              => 'preview'
+        ]);
+
+        // Contact Information Block
+        acf_register_block_type([
+            'name'              => 'contact_information',
+            'title'             => __('Contact Information Section'),
+            'description'       => __('Displays contact information'),
+            'render_template'   => 'template-parts/blocks/contact-information.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['contact'],
+            'mode'              => 'preview'
+        ]);
+
+        // Steps and Highlights block
+        acf_register_block_type([
+            'name'              => 'steps_and_highlights',
+            'title'             => __('Steps and Highlights Section'),
+            'description'       => __('Displays section for process or highlights'),
+            'render_template'   => 'template-parts/blocks/steps-and-highlights.php',
+            'category'          => 'layout',
+            'icon'              => 'format-image',
+            'keywords'          => ['steps', 'process', 'highlights'],
+            'mode'              => 'preview'
         ]);
 
         // Services Block
@@ -78,4 +198,4 @@ function prestige_chauffeur_acf_blocks_init() {
         ]);
     }
 }
-add_action('acf/init', 'prestige_chauffeur_acf_blocks_init');
+add_action('acf/init', 'afribeads_acf_blocks_init');
