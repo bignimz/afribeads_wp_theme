@@ -291,10 +291,11 @@ nav ul li a:hover {
   position: absolute;
   right: 0;
   top: 5px;
-  padding: 10px;
+  padding: 12px 0;
   background: transparent;
   border: none;
-  font-size: 14px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  font-size: 1rem;
   color: #333;
   cursor: pointer;
 }
@@ -358,5 +359,29 @@ nav ul li a:hover {
   /* Handle body when menu is open */
   body.mobile-menu-open {
     overflow: hidden;
+  }
+}
+
+.afri-contact-link {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  color: var(--secondary-color) !important;
+  background: transparent;
+}
+
+.afri-contact-link:hover {
+  background-color: var(--secondary-color);
+  color: #fff !important;
+}
+
+@media (max-width: 1160px) {
+  .afri-contact-link {
+    all: unset;
+    color: var(--text-color) !important;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
   }
 }

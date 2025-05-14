@@ -4,7 +4,11 @@
 
 ## Overview
 
-Prestige Chauffeur is a professional and responsive WordPress theme developed by Nimrod Musungu, specifically designed for execcutive Prestige chauffeur businesses. The theme features a modern aesthetic with intuitive navigation and specialized components that highlight fleets, reservations, testimonials, and other features.
+**Afri Beads** is a fully custom WordPress theme developed as a personal project to demonstrate advanced WordPress development skills — including **custom Gutenberg blocks using ACF**, performance optimization, and a fully responsive design system.
+
+This project simulates a real-world client site for a fictional African beadwork brand. It reflects my approach to scalable, maintainable, and admin-friendly WordPress theme development.
+
+---
 
 ## Features
 
@@ -15,17 +19,46 @@ Prestige Chauffeur is a professional and responsive WordPress theme developed by
 - **Gulp Workflow:** Modern development workflow with Sass compilation, JavaScript bundling, and image optimization
 - **Underscores Foundation:** Built on the solid foundation of Underscores (\_s) starter theme for WordPress
 
+## 🧰 Skills Demonstrated
+
+- **PHP**: Custom theme built from scratch using clean and modular architecture
+- **ACF + Gutenberg Blocks**: Built multiple **custom reusable Gutenberg blocks** using ACF’s `block.json` integration for intuitive content editing
+- **Custom Post Types (CPTs)**: Structured content for "Products", "Stories", and "Testimonials"
+- **Sass (SCSS)**: Component-based styling with nesting and variables
+- **Vanilla JavaScript**: Mobile nav, dropdown toggles, and interactivity
+- **WPForms Lite**: Integrated form builder for user engagement
+- **Responsive Design**: Designed for seamless performance across devices
+- **Minified Assets**: CSS and JS optimized for fast loading
+
+---
+
+## 🔍 Key Features
+
+- 🧩 **Reusable Gutenberg Blocks** built with ACF for flexible content creation
+- 🔧 **Admin-Friendly** content structure using ACF + CPTs
+- 📱 **Fully responsive** and mobile-first layout
+- 💨 **Performance-optimized**: All scripts/styles minified, no unused bloat
+- 📂 **Modular file structure** and clean separation of logic/presentation
+- 🌐 **Demo-ready** with sample content and theme options
+
+---
+
+## 🌐 Live Demo
+
+> [https://afribeads.emerginghost.co.ke](https://afribeads.emerginghost.co.ke)  
+> _(Live demo hosted for portfolio purposes — site may load slower on shared hosting)_
+
 ## Installation
 
 1. **Download the Theme:** Clone or download the theme's repository
 2. **Install Dependencies:** Run `npm install` to install development dependencies
 3. **Build Assets:** Run `npm run build` to compile all assets
 4. **Upload to WordPress:** Upload the theme to the WordPress themes directory (`/wp-content/themes/`)
-5. **Activate Theme:** Activate Prestige Chauffeur in the WordPress dashboard under "Appearance > Themes"
+5. **Activate Theme:** Activate Afri Beads in the WordPress dashboard under "Appearance > Themes"
 
 ## Development
 
-Prestige Chauffeur uses a Gulp-based workflow for development:
+Afri Beads uses a Gulp-based workflow for development:
 
 ```bash
 # Install dependencies
@@ -44,7 +77,7 @@ npm run bundle
 ### File Structure
 
 ```
-bat_bistro/
+afribeads/
 ├── css/                   # Compiled CSS (generated)
 ├── dist/                  # Distribution files (generated)
 ├── images/                # Optimized images (generated)

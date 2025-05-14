@@ -41,7 +41,7 @@ class Afri_Custom_Nav_Walker extends Walker_Nav_Menu {
         }
         $title = $item->title;
         if (strtolower($title) == 'contact us' || strtolower($title) == 'contact') {
-            $atts['class'] = isset($atts['class']) ? $atts['class'] . ' afri-btn afri-btn-outline' : 'afri-btn afri-btn-outline';
+            $atts['class'] = isset($atts['class']) ? $atts['class'] . ' afri-contact-link' : 'afri-contact-link';
         }
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
         

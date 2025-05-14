@@ -229,37 +229,17 @@ function afribeads_register_required_plugins() {
         [
             'name'     => 'WPForms',
             'slug'     => 'wpforms-lite',
-            'source'   => get_template_directory() . '/inc/plugins/wpforms-lite.zip', 
             'required' => true,
-            'version'  => '1.9.5.2',
         ],
         [
             'name'     => 'WooCommerce',
             'slug'     => 'woocommerce',
-            'source'   => get_template_directory() . '/inc/plugins/woocommerce.zip', 
             'required' => true,
-            'version'  => '9.8.5',
-        ],
-        [
-            'name'     => 'Google for WooCommerce',
-            'slug'     => 'google-listings-and-ads',
-            'source'   => get_template_directory() . '/inc/plugins/google-listings-and-ads.zip', 
-            'required' => true,
-            'version'  => '2.9.13',
-        ],
-        [
-            'name'     => 'WooCommerce PayPal Payments',
-            'slug'     => 'woocommerce-paypal-payments',
-            'source'   => get_template_directory() . '/inc/plugins/woocommerce-paypal-payments.zip', 
-            'required' => true,
-            'version'  => '3.0.5',
         ],
         [
             'name'     => 'One Click Demo Import',
             'slug'     => 'one-click-demo-import',
-            'source'   => get_template_directory() . '/inc/plugins/one-click-demo-import.zip', 
             'required' => true,
-            'version'  => '3.3.0',
         ],
         // Add other plugins here
     ];
